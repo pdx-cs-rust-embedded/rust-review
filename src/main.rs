@@ -1,3 +1,35 @@
+/*
+
+// "Not reallly an error"
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+let mut q = VecDeque::new();
+q.push_back("start");
+while let Some(value) = q.pop_front() {
+    
+}
+
+/// Really an error
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+
+let x = match x.try_from() {
+    Ok(v) => v,
+    Err(e) => return Err(e),
+};
+
+fn foo(x: u64) -> Result<(), <u32 as TryFrom<u64>>::Error> {
+    let _x = u32::try_from(x)?;
+    Ok(())
+}
+
+*/
+
 use prompted::input;
 
 struct Point {
@@ -23,7 +55,7 @@ pub enum Color {
 }
 
 impl std::fmt::Display for Color {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
         match self {
             Color::Red => write!(f, "pure red"),
             Color::Green => write!(f, "pure green"),
