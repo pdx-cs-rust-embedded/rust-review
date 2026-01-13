@@ -15,6 +15,30 @@ impl Point {
     }
 }
 
+pub enum Color {
+    Red,
+    Green,
+    Blue,
+    Rgb(u8, u8, u8),
+}
+
+impl std::fmt::Display for Color {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Color::Red => write!(f, "pure red"),
+            Color::Green => write!(f, "pure green"),
+            Color::Blue => write!(f, "pure blue"),
+            Color::Rgb(r, g, b) => write!(
+                f,
+                "mixed color #{:02x}{:02x}{:02x}",
+                r,
+                g,
+                b,
+            ),
+        }
+    }
+}
+
 /// Add "The Great" to the end of the name.
 fn greaten(name: String) -> String {
     name + " The Great"
@@ -60,4 +84,7 @@ fn main() {
 
     let p = Point::new(1, 2).double();
     println!("{} {}", p.x, p.y);
+
+    let c = Color::Rgb(0xff, 0, 0);
+    println!("{}", c);
 }
